@@ -6,11 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ContextObserverTest {
-	private Rule observer;
+public class RuleTest {
+
 	@Before
 	public void setUp() throws Exception {
-		observer = new Rule();
 	}
 
 	@After
@@ -18,12 +17,17 @@ public class ContextObserverTest {
 	}
 
 	@Test
-	public void testUpdate() {
+	public void testUpdatePrimitiveEvent() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testUpdatePrimitiveEvent() {
+	public void testFindActionWithEventId() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCreateRule() {
 		fail("Not yet implemented");
 	}
 

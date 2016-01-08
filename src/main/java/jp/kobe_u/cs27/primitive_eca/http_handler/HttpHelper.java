@@ -7,6 +7,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 
+/**
+ * @author otokunaga
+ *
+ */
 public class HttpHelper {
 	private boolean result = false;
 	public boolean parseHttpEndpoint(String url){

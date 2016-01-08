@@ -12,13 +12,12 @@ import java.net.URLEncoder;
  */
 public class Action {
 	private String url;
-
+	private String actionId;
 	
 
-	public Action(String actionid, String url, String description) {
+	public Action(String actionid, String url) {
+		this.actionId = actionid;
 		this.url = url;
-		
-		update();
 	}
 
 	/**
@@ -78,6 +77,14 @@ public class Action {
 	
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getActionId() {
+		return actionId;
+	}
+
+	public void setActionId(String actionId) {
+		this.actionId = actionId;
 	}
 
 }

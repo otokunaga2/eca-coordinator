@@ -6,19 +6,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import jp.kobe_u.cs27.primitive_eca.rule.ContextObserver;
+import jp.kobe_u.cs27.primitive_eca.rule.Rule;
 import jp.kobe_u.cs27.primitive_eca.rule.Observer;
 
 public class PrimitiveContextTest {
 	private PrimitiveEvent context;
-	private ContextObserver observer;
+	private Rule observer;
 	private final String url ="http://192.168.100.107:8080/test-execution/webapi/myresource/test";
 	@Before
 	public void setUp() throws Exception {
-		Observer observer = new ContextObserver();
+		Observer observer = new Rule();
 		
 		context = new PrimitiveEvent(observer,url);
-		observer = new ContextObserver();
+		observer = new Rule();
 	}
 
 	@After

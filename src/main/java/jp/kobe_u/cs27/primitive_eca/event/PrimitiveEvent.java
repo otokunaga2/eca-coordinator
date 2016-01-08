@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveCondition;
 import jp.kobe_u.cs27.primitive_eca.http_handler.HttpHelper;
-import jp.kobe_u.cs27.primitive_eca.rule.ContextObserver;
+import jp.kobe_u.cs27.primitive_eca.rule.Rule;
 import jp.kobe_u.cs27.primitive_eca.rule.Observer;
 
 /**
@@ -36,7 +36,7 @@ public class PrimitiveEvent extends TimerTask {
 	ArrayList<Observer> observerList;
 	public void addObserver(Observer o){
 		if(observerList == null){
-			new ArrayList<ContextObserver>();
+			new ArrayList<Rule>();
 		}
 		observerList.add(o);
 	}
@@ -52,16 +52,9 @@ public class PrimitiveEvent extends TimerTask {
 		
 		if(this.contextFlag == false && contextIsTrue){/*false->trueが成立した時*/
 			notifyObservers(this.contextObserver);
-//			for(Observer o: observerList){
-//				try{
-//					notifyObservers(o);
-//				}catch(NullPointerException e){
-//					e.printStackTrace();
-//				}
-//			}
 			this.contextFlag = true;
 		}else if(this.contextFlag && !contextIsTrue){/*true->falseが成立した時*/
-			notifyObservers(this.contextObserver);
+			//notifyObservers(this.contextObserver);
 			this.contextFlag = false;
 		}
 	}

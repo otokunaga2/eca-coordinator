@@ -2,6 +2,10 @@ package jp.kobe_u.cs27.primitive_eca.rule;
 
 import jp.kobe_u.cs27.primitive_eca.event.PrimitiveEvent;
 
+/**
+ * @author otokunaga
+ *
+ */
 public interface Observer {
 	public abstract void update();
 
