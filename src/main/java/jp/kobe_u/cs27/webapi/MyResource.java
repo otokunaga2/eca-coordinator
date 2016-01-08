@@ -1,4 +1,4 @@
-package jp.kobe_u.cs27.primitive_eca;
+package jp.kobe_u.cs27.webapi;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,4 +22,8 @@ public class MyResource {
     public String getIt() {
         return "Got it!";
     }
+    
+    
+    
+    
 }

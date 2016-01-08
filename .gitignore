@@ -2,3 +2,4 @@
 .settings
 target/classes/*
 
+/target/

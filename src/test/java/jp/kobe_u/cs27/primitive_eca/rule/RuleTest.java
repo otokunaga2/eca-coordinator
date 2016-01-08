@@ -6,10 +6,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RuleTest {
+import jp.kobe_u.cs27.primitive_eca.action.Action;
+import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveEvent;
 
+public class RuleTest {
+	private Rule rule;
+	private Action action;
 	@Before
 	public void setUp() throws Exception {
+		rule = new Rule();
+		action = new Action();
+		PrimitiveEvent event = new PrimitiveEvent(rule, "http://192.168.100.107:8080/test-execution/webapi/myresource/test");
+		
+		rule.createRule(event, null, action);
 	}
 
 	@After
@@ -28,7 +37,13 @@ public class RuleTest {
 
 	@Test
 	public void testCreateRule() {
-		fail("Not yet implemented");
+		rule.startMonitoring();
 	}
+	@Test
+	public void testGetActionWithId(){
+		rule.getActionWithId("a");
+		assertNull(action);
+	}
+	
 
 }

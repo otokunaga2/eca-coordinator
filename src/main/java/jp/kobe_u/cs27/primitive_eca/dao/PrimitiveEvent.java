@@ -1,10 +1,9 @@
-package jp.kobe_u.cs27.primitive_eca.event;
+package jp.kobe_u.cs27.primitive_eca.dao;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveCondition;
 import jp.kobe_u.cs27.primitive_eca.http_handler.HttpHelper;
 import jp.kobe_u.cs27.primitive_eca.rule.Rule;
 import jp.kobe_u.cs27.primitive_eca.rule.Observer;
@@ -15,7 +14,7 @@ import jp.kobe_u.cs27.primitive_eca.rule.Observer;
  */
 public class PrimitiveEvent extends TimerTask {
 	private String url;
-	private boolean contextFlag;
+	private boolean contextFlag = false;
 	private Observer contextObserver;
 	HttpHelper httpHelper;
 	private ArrayList<PrimitiveCondition> conditionList;
@@ -33,10 +32,10 @@ public class PrimitiveEvent extends TimerTask {
 	}
 	
 	
-	ArrayList<Observer> observerList;
-	public void addObserver(Observer o){
+	ArrayList<Rule> observerList;
+	public void addObserver(Rule o){
 		if(observerList == null){
-			new ArrayList<Rule>();
+			observerList = new ArrayList<Rule>();
 		}
 		observerList.add(o);
 	}
@@ -55,6 +54,8 @@ public class PrimitiveEvent extends TimerTask {
 			this.contextFlag = true;
 		}else if(this.contextFlag && !contextIsTrue){/*true->falseが成立した時*/
 			//notifyObservers(this.contextObserver);
+			this.contextFlag = false;
+		}else if(!this.contextFlag && !contextIsTrue){ /*false->false*/
 			this.contextFlag = false;
 		}
 	}

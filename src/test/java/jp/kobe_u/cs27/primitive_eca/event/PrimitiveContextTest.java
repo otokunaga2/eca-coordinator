@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jp.kobe_u.cs27.primitive_eca.rule.Rule;
+import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveEvent;
 import jp.kobe_u.cs27.primitive_eca.rule.Observer;
 
 public class PrimitiveContextTest {

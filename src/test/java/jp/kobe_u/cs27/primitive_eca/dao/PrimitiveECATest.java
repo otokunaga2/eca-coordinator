@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import jp.kobe_u.cs27.primitive_eca.event.PrimitiveEvent;
 import jp.kobe_u.cs27.primitive_eca.rule.Rule;
 
 public class PrimitiveECATest {

@@ -4,9 +4,12 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.bson.types.ObjectId;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import jp.kobe_u.cs27.primitive_eca.dao.ActionDAO;
 
 public class ActionDAOTest {
 	private ActionDAO actionDAO = null;
@@ -22,9 +25,10 @@ public class ActionDAOTest {
 	}
 
 	@Test
-	public void test(){
-		ArrayList<Action> actual = actionDAO.findWithEventId("1");
-		assertFalse(actual.isEmpty());
+	public void testFind(){
+		ObjectId id = new ObjectId();
+//		ArrayList<Action> actual = actionDAO.findAction(id);
+//		assertFalse(actual.isEmpty());
 	}
 
 }

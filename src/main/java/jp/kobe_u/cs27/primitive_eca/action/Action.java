@@ -15,6 +15,9 @@ public class Action {
 	private String actionId;
 	
 
+	public Action(){
+		
+	}
 	public Action(String actionid, String url) {
 		this.actionId = actionid;
 		this.url = url;
@@ -25,9 +28,7 @@ public class Action {
 	 *
 	 * @return
 	 */
-	public boolean update() {
-		return new ActionDAO().update();
-	}
+
 	
 
 	/**

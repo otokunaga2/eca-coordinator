@@ -1,6 +1,6 @@
 package jp.kobe_u.cs27.primitive_eca.rule;
 
-import jp.kobe_u.cs27.primitive_eca.event.PrimitiveEvent;
+import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveEvent;
 
 /**
  * @author otokunaga
