@@ -3,11 +3,14 @@ package jp.kobe_u.cs27.primitive_eca.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.bson.types.ObjectId;
+import org.codehaus.jackson.annotate.JsonValue;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-import jp.kobe_u.cs27.primitive_eca.webapi.ObjectIdSerializerModule.ObjectIdSerializer;
+import jp.kobe_u.cs27.primitive_eca.webapi.ObjectIdSerializerModule.ObjectIdJsonSerializer;
+
+
 
 @XmlRootElement
 @Entity("event")
@@ -15,7 +18,7 @@ import jp.kobe_u.cs27.primitive_eca.webapi.ObjectIdSerializerModule.ObjectIdSeri
 public class EventModel {
 
 	@Id
-	private ObjectId id;
+	private String id = new ObjectId().toHexString();
 	private String url;
 	private long monitoringInterval;
 	public long getSeepTime() {
@@ -31,12 +34,12 @@ public class EventModel {
 		this.url = url;
 	}
 	
-	@JsonSerialize(using=ObjectIdSerializer.class)
-	public ObjectId getId() {
+	@JsonSerialize(using=ObjectIdJsonSerializer.class)
+	public String getId() {
 		return id;
 	}
-	@JsonSerialize(using=ObjectIdSerializer.class)
-	public void setId(ObjectId id) {
+	@JsonSerialize(using=ObjectIdJsonSerializer.class)
+	public void setId(String id) {
 		this.id = id;
 	}
 }

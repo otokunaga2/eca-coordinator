@@ -1,9 +1,10 @@
 package jp.kobe_u.cs27.primitive_eca.webapi;
 
 import javax.ws.rs.ext.ContextResolver;
+import javax.ws.rs.ext.Provider;
 
 import org.codehaus.jackson.map.ObjectMapper;
-
+@Provider
 public class JacksonObjectMapperProvider implements ContextResolver<ObjectMapper> {
 
     final ObjectMapper defaultObjectMapper;
@@ -17,9 +18,11 @@ public class JacksonObjectMapperProvider implements ContextResolver<ObjectMapper
         return defaultObjectMapper;
     }
 
-    private static ObjectMapper createDefaultMapper() {
+    public static ObjectMapper createDefaultMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new ObjectIdSerializerModule());
+        
+//        mapper.registerModule(new ObjectIdJsonSerializer());
 
         return mapper;
     }

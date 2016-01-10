@@ -1,7 +1,6 @@
-package jp.kobe_u.cs27.primitive_eca.endpoint;
+package jp.kobe_u.cs27.primitive_eca.webapi;
 
 import java.util.List;
-
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -10,12 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
-
-import org.glassfish.hk2.api.Unproxiable;
 
 import jp.kobe_u.cs27.primitive_eca.model.EventModel;
-import jp.kobe_u.cs27.primitive_eca.webapi.EventController;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -39,6 +34,7 @@ public class MyResource {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    
     @Path(value="test")
     public Response getEvent(@PathParam("id") final String eid){
     	EventModel emList = eventController.getOneEvent();
@@ -52,11 +48,11 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path(value="events")
     public Response getEvents(@PathParam("id") final String eid){
-    	EventModel emList = eventController.getOneEvent();
-    	
-//    	GenericEntity<List<EventModel>> result = new GenericEntity<List<EventModel>>(emList){};
-    	
-		return Response.ok().entity(emList).build();
+    	List<EventModel> emList = eventController.getAllEvent();
+
+        GenericEntity<List<EventModel>> result = 
+            new GenericEntity<List<EventModel>>(emList) {};
+		return Response.ok().entity(result).build();
     }
     
     

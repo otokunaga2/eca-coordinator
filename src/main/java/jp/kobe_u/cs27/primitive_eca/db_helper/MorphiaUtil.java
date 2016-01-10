@@ -3,6 +3,9 @@ package jp.kobe_u.cs27.primitive_eca.db_helper;
 import java.net.UnknownHostException;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.mapping.Mapper;
+import org.mongodb.morphia.mapping.MapperOptions;
+
 import com.mongodb.MongoClient;
 
 
@@ -15,7 +18,10 @@ public class MorphiaUtil {
 		 }
 		 /*モデルに利用するパッケージ名*/
 		morphia.mapPackage("jp.kobe_u.cs27.memory.coordinator.model");
-
+		Mapper morphiaMapper = morphia.getMapper();
+		
+		
+		
 		Datastore datastore = null;
 		try {
 			datastore = morphia.createDatastore(new MongoClient("192.168.0.21" , 27017), "eca_coordinator");

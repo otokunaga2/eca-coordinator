@@ -27,7 +27,7 @@ import jp.kobe_u.cs27.primitive_eca.service.Event;
 public class EventDAO {
 
 	private Datastore dataStore = null;
-	private static final String ID_KEY = "_id"; 
+	private static final String ID_KEY = "_id"; /*ObjectIdのままだとjacksonに変換できなかったため、Stringに変換*/
 	private static final String URL = "url";
 	public EventDAO(){
 		dataStore = MorphiaUtil.getInstance();
