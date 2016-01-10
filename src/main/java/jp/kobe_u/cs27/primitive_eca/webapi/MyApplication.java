@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
+import jp.kobe_u.cs27.primitive_eca.db_helper.JacksonObjectMapperProvider;
+
 public class MyApplication extends Application {
 	@Override
     public Set<Class<?>> getClasses() {

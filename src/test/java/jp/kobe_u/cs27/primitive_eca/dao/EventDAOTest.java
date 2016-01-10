@@ -1,5 +1,4 @@
 package jp.kobe_u.cs27.primitive_eca.dao;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -10,13 +9,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import jp.kobe_u.cs27.primitive_eca.dao.EventDAO;
 import jp.kobe_u.cs27.primitive_eca.rule.Rule;
 import jp.kobe_u.cs27.primitive_eca.service.Event;
 
 public class EventDAOTest {
-	private EventDAO eventDAO = null;
-	private ObjectId savedId;
-	private ObjectId shouldSaveId;
+	EventDAO eventDAO = null;
+	private String savedId;
+	private String shouldSaveId;
 	Event em;
 	private Rule observer;
 	private static final String urlSample = "http://example.com";

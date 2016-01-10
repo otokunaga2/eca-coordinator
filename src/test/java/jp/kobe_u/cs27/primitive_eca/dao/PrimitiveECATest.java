@@ -1,7 +1,5 @@
 package jp.kobe_u.cs27.primitive_eca.dao;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +9,7 @@ import jp.kobe_u.cs27.primitive_eca.rule.Rule;
 import jp.kobe_u.cs27.primitive_eca.service.Event;
 
 public class PrimitiveECATest {
+	@SuppressWarnings("unused")
 	private ECAModel eca;
 	Event event;
 	@Before

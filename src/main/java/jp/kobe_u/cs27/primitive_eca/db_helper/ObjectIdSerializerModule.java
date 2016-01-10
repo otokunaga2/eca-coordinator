@@ -1,4 +1,4 @@
-package jp.kobe_u.cs27.primitive_eca.webapi;
+package jp.kobe_u.cs27.primitive_eca.db_helper;
 
 import java.io.IOException;
 

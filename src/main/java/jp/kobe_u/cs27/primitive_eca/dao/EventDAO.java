@@ -32,12 +32,12 @@ public class EventDAO {
 	public EventDAO(){
 		dataStore = MorphiaUtil.getInstance();
 	}
-	public EventModel findAsEventModel(ObjectId id){
+	public EventModel findAsEventModel(String id){
 		return dataStore.find(EventModel.class).field(ID_KEY).equal(id).get();
 	}
 	
 
-	public Event findEvent(Rule observer,ObjectId id){
+	public Event findEvent(Rule observer,String id){
 		EventModel event = dataStore.find(EventModel.class).field(ID_KEY).equal(id).get();
 		Event lEvent = new Event(observer,event.getUrl());
 		return lEvent;
@@ -49,13 +49,13 @@ public class EventDAO {
 		return results.getUpdatedExisting();
 		
 	}
-	public ObjectId save(Event event){
+	public String save(Event event){
 		EventModel em = new EventModel();
 		em.setUrl(event.getUrl());
 		em.setSeepTime(event.getMontoringInterval());
 		Key<EventModel> key = dataStore.save(em);
-		System.out.println(key);
-		return (ObjectId) key.getId();
+
+		return (String)key.getId();
 	}
 	public List<Event> getEventAll(Rule rule){
 		List<EventModel> eventList = dataStore.find(EventModel.class).asList();

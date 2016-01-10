@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jp.kobe_u.cs27.primitive_eca.action.Action;
+import jp.kobe_u.cs27.primitive_eca.dao.ActionDAO;
 import jp.kobe_u.cs27.primitive_eca.model.ActionModel;
 
 public class ActionDAOTest {

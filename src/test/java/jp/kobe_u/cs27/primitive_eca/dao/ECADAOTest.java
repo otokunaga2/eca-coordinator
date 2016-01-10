@@ -11,6 +11,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jp.kobe_u.cs27.primitive_eca.action.Action;
+import jp.kobe_u.cs27.primitive_eca.dao.ActionDAO;
+import jp.kobe_u.cs27.primitive_eca.dao.ConditionDAO;
+import jp.kobe_u.cs27.primitive_eca.dao.ECADAO;
+import jp.kobe_u.cs27.primitive_eca.dao.EventDAO;
 import jp.kobe_u.cs27.primitive_eca.model.ActionModel;
 import jp.kobe_u.cs27.primitive_eca.model.ConditionModel;
 import jp.kobe_u.cs27.primitive_eca.model.ECAModel;
@@ -53,7 +57,7 @@ public class ECADAOTest {
 		conditionDAO = new ConditionDAO();
 		eventDAO = new EventDAO();
 //		
-		ObjectId id = eventDAO.save(event);
+		String id = eventDAO.save(event);
 		savedEvent =eventDAO.findAsEventModel(id);
 		
 		ObjectId aid = actionDAO.save(action);

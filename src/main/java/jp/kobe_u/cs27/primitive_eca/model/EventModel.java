@@ -8,7 +8,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-import jp.kobe_u.cs27.primitive_eca.webapi.ObjectIdSerializerModule.ObjectIdJsonSerializer;
+import jp.kobe_u.cs27.primitive_eca.db_helper.ObjectIdSerializerModule.ObjectIdJsonSerializer;
 
 
 
