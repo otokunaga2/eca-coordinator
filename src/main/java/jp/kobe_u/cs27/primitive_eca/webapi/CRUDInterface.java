@@ -1,4 +1,4 @@
-package jp.kobe_u.cs27.webapi;
+package jp.kobe_u.cs27.primitive_eca.webapi;
 
 public interface CRUDInterface {
 	public String save();

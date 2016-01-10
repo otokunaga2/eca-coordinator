@@ -23,7 +23,7 @@
                 	<archive>
   						<manifest>
     					<addClasspath>true</addClasspath>
-    					<classpathPrefix>jp.kobe_u.cs27.primitive_eca</classpathPrefix>
+    					<classpathPrefix>jp.kobe_u.cs27.primitive_eca.webapi</classpathPrefix>
   						</manifest>
 					</archive>
                     <source>${jdk.version}</source>
@@ -58,6 +58,20 @@
           			</execution>
         		</executions>
       		</plugin>
+      		<plugin>
+			    <!-- you have to setupt the maven setting  -->
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<!-- see $MAVEN_DIR/conf/ -->
+					<server>tomcat-development</server>
+					<port>8080</port>
+					<path>/primitive-eca</path>
+					<url>http://192.168.100.107:8080/manager/text</url>
+				</configuration>
+			</plugin>
+      		
         </plugins>
     </build>
 	
@@ -137,6 +151,31 @@
 			<artifactId>mockito-all</artifactId>
 			<version>2.0.2-beta</version>
 		</dependency>
+		
+<dependency>
+	<groupId>org.glassfish.jersey.media</groupId>
+	<artifactId>jersey-media-json-jackson</artifactId>
+	<version>2.7</version>
+</dependency>
+
+		
+		
+<!--		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.4.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.4.1.2</version>
+		</dependency> -->
         
         
     </dependencies>

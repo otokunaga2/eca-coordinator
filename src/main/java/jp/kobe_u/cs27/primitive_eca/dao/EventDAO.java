@@ -69,6 +69,9 @@ public class EventDAO {
 		}
 		return lEventList;
 	}
+	public List<EventModel> getEventModel(){
+		return dataStore.find(EventModel.class).asList();
+	}
 
 	
 	

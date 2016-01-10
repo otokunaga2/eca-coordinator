@@ -18,7 +18,7 @@ public class MorphiaUtil {
 
 		Datastore datastore = null;
 		try {
-			datastore = morphia.createDatastore(new MongoClient("localhost" , 27017), "eca_coordinator");
+			datastore = morphia.createDatastore(new MongoClient("192.168.0.21" , 27017), "eca_coordinator");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
