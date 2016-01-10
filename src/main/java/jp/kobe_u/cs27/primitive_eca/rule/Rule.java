@@ -2,14 +2,18 @@ package jp.kobe_u.cs27.primitive_eca.rule;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.bson.types.ObjectId;
 
 import jp.kobe_u.cs27.primitive_eca.action.Action;
+import jp.kobe_u.cs27.primitive_eca.dao.ECADAO;
 import jp.kobe_u.cs27.primitive_eca.http_handler.HttpHelper;
 import jp.kobe_u.cs27.primitive_eca.model.ECAModel;
+import jp.kobe_u.cs27.primitive_eca.model.EventModel;
+import jp.kobe_u.cs27.primitive_eca.model.ActionModel;
 import jp.kobe_u.cs27.primitive_eca.model.ConditionModel;
 import jp.kobe_u.cs27.primitive_eca.service.Event;
 
@@ -20,7 +24,8 @@ public class Rule implements Observer,RuleInterface {
 	private ConditionModel conditon = null;
 	private ECAModel eca = new ECAModel();
 	private CopyOnWriteArrayList<ECAModel> ecaList;
-	
+	private static final long SLEEPTIME = 1000;
+	private static ECADAO ecaDAO = new ECADAO();
 	public Rule() {
 		httpHelper = new HttpHelper();
 		ecaList = new CopyOnWriteArrayList<>();
@@ -73,9 +78,8 @@ public class Rule implements Observer,RuleInterface {
 	 */
 	public Action getActionWithId(String id){
 		for(ECAModel eca: ecaList){
-			if(eca.getEcaId().equals(id)){
-				return eca.getAction();
-			}
+			ECAModel tempECA = ecaDAO.findECA(eca);
+			
 		}
 		return null;/**/
 	}
@@ -84,11 +88,18 @@ public class Rule implements Observer,RuleInterface {
 		
 	}
 	public boolean startMonitoring(){
-		for(ECAModel eca: this.ecaList){
-			
-			Event event = eca.getEvent();
-			event.setTimer(1000);
-		}
+//		for(ECAModel eca: this.ecaList){
+//			/*todo
+//			 * イベントをecamodelから取得する
+//			 * 
+//			 * */
+//			
+//			Event event = eca.getEvent();
+//			for(Event currEvent:event){
+//				currEvent.setTimer(SLEEPTIME);
+//			}
+//			
+//		}
 		return true;
 	}
 	
@@ -97,7 +108,7 @@ public class Rule implements Observer,RuleInterface {
 		return null;
 	}
 	
-	public void createRule(Event event, ArrayList<ConditionModel> cond, Action action){
+	public void createRule(EventModel event, ArrayList<ConditionModel> cond, ActionModel action){
 		ECAModel eca = new ECAModel(event, cond, action);
 		this.ecaList.add(eca);
 	}

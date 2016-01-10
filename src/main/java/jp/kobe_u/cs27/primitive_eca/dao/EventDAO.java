@@ -32,11 +32,14 @@ public class EventDAO {
 	public EventDAO(){
 		dataStore = MorphiaUtil.getInstance();
 	}
+	public EventModel findAsEventModel(ObjectId id){
+		return dataStore.find(EventModel.class).field(ID_KEY).equal(id).get();
+	}
 	
+
 	public Event findEvent(Rule observer,ObjectId id){
 		EventModel event = dataStore.find(EventModel.class).field(ID_KEY).equal(id).get();
 		Event lEvent = new Event(observer,event.getUrl());
-		
 		return lEvent;
 	}
 	public boolean updateEvent(ObjectId aid, String url){
@@ -66,5 +69,7 @@ public class EventDAO {
 		}
 		return lEventList;
 	}
+
+	
 	
 }

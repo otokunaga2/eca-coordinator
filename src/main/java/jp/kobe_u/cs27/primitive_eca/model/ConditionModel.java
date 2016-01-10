@@ -1,5 +1,6 @@
 package jp.kobe_u.cs27.primitive_eca.model;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
@@ -11,18 +12,21 @@ import org.mongodb.morphia.annotations.Indexes;
  *
  */
 @Entity("condition")
-@Indexes(@Index(value = "value", fields = @Field("value") ))
 public class ConditionModel {
 	@Id
-	private String id;
+	private ObjectId id;
 	private String url;
+	
+	public ConditionModel(){
+		
+	}
 	public ConditionModel(String url) {
 		this.url = url;
 	}
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 	public String getUrl() {

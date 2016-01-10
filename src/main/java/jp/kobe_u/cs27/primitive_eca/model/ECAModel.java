@@ -1,63 +1,61 @@
 package jp.kobe_u.cs27.primitive_eca.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Index;
-import org.mongodb.morphia.annotations.Indexes;
 import org.mongodb.morphia.annotations.Reference;
-
-import jp.kobe_u.cs27.primitive_eca.action.Action;
-import jp.kobe_u.cs27.primitive_eca.service.Event;
-import jp.kobe_u.cs27.primitive_eca.util.RandomGenerator;
 
 
 @Entity("eca")
-@Indexes(@Index(value = "value", fields = @Field("value") ))
 public class ECAModel {
 	@Id
 	private ObjectId id;
 	/*eventと参照関係を結ぶ*/
 	@Reference
-	private Event event;
+	private EventModel event;
 	/*condtionと参照関係を結ぶ*/
+	
 	@Reference
-	private ArrayList<ConditionModel> condList;
+	private List<ConditionModel> condList;
+	
 	@Reference
-	private Action action;
+	private ActionModel action;
 	private String ecaId;
+	
+	
 	public ECAModel(){
 //		setEcaId(RandomGenerator.getRandomUniqueId());
+		
 	}
-	public ECAModel(Event event, ArrayList<ConditionModel> cond, Action action){
+	public ECAModel(EventModel event, ArrayList<ConditionModel> cond, ActionModel action){
 		this.setEvent(event);
 		this.setCondList(cond);
 		this.setAction(action);
+		
 //		setEcaId(RandomGenerator.getRandomUniqueId());
 	}
-	
-	
-	
 
-	public ArrayList<ConditionModel> getCondList() {
+
+
+	public List<ConditionModel> getCondList() {
 		return condList;
 	}
-	public void setCondList(ArrayList<ConditionModel> condList) {
-		this.condList = condList;
+	public void setCondList(List<ConditionModel> conditonList) {
+		this.condList = conditonList;
 	}
-	public Action getAction() {
+	public ActionModel getAction() {
 		return action;
 	}
-	public void setAction(Action action) {
+	public void setAction(ActionModel action) {
 		this.action = action;
 	}
-	public Event getEvent() {
+	public EventModel getEvent() {
 		return event;
 	}
-	public void setEvent(Event event) {
+	public void setEvent(EventModel event) {
 		this.event = event;
 	}
 	public ObjectId getEcaId() {

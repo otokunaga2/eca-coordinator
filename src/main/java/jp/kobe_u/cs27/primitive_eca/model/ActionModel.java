@@ -8,7 +8,6 @@ import org.mongodb.morphia.annotations.Index;
 import org.mongodb.morphia.annotations.Indexes;
 
 @Entity("action")
-@Indexes(@Index(value = "value", fields = @Field("value") ))
 public class ActionModel {
 	@Id
 	private ObjectId id;

@@ -17,7 +17,7 @@ public class PrimitiveECATest {
 	public void setUp() throws Exception {
 		Rule rule = new Rule();
 		event =new Event(rule, "http://192.168.100.107:8080/test-execution/webapi/myresource/test");
-		eca = new ECAModel(event, null, null);
+		eca = new ECAModel();
 	}
 
 	@After

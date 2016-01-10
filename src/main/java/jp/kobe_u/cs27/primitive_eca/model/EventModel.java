@@ -8,7 +8,7 @@ import org.mongodb.morphia.annotations.Index;
 import org.mongodb.morphia.annotations.Indexes;
 
 @Entity("event")
-@Indexes(@Index(value = "value", fields = @Field("value") ))
+//@Indexes(@Index(value = "value", fields = @Field("value") ))
 public class EventModel {
 	@Id
 	private ObjectId id;

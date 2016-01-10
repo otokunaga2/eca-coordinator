@@ -33,6 +33,9 @@ public class ActionDAO {
 		actionModel = new ActionModel();
 	}
 	
+	public ActionModel findActionAsModel(ObjectId id){
+		return dataStore.find(ActionModel.class).field(ID_KEY).equal(id).get();
+	}
 	/**
 	 * @param id
 	 * @return

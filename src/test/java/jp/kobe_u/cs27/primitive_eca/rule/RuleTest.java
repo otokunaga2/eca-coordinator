@@ -18,7 +18,7 @@ public class RuleTest {
 		action = new Action();
 		Event event = new Event(rule, "http://192.168.100.107:8080/test-execution/webapi/myresource/test");
 		
-		rule.createRule(event, null, action);
+		//rule.createRule(event, null, action);
 	}
 
 	@After
