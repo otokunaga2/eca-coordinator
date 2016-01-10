@@ -1,6 +1,6 @@
 package jp.kobe_u.cs27.primitive_eca.rule;
 
-import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveEvent;
+import jp.kobe_u.cs27.primitive_eca.service.Event;
 
 /**
  * @author otokunaga
@@ -9,5 +9,5 @@ import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveEvent;
 public interface Observer {
 	public abstract void update();
 
-	public abstract void update(PrimitiveEvent primitiveContext);
+	public abstract void update(Event primitiveContext);
 }

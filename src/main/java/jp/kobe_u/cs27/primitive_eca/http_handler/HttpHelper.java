@@ -16,6 +16,10 @@ import org.jsoup.parser.Parser;
 public class HttpHelper {
 	private boolean result = false;
 	private static final String tagName = "result";
+
+	public boolean fakeGetHttpResponse(){
+		return true;
+	}
 	public boolean parseHttpEndpoint(String url){
 		Document document = null;
 		try {

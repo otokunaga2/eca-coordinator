@@ -7,9 +7,16 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Index;
 import org.mongodb.morphia.annotations.Indexes;
 
-@Entity("simple_action")
+@Entity("action")
 @Indexes(@Index(value = "value", fields = @Field("value") ))
 public class ActionModel {
+	@Id
+	private ObjectId id;
+
+	private String url;
+	private String description;
+	private String lastInvocation;
+
 	public ActionModel(){
 		
 	}
@@ -25,13 +32,7 @@ public class ActionModel {
 		update();
 	}
 	
-	@Id
-	private ObjectId id;
-
-	private String url;
-	private String description;
-	private String lastInvocation;
-
+	
 	public ObjectId getId(){
 		return this.id;
 	}

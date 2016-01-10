@@ -5,20 +5,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import jp.kobe_u.cs27.primitive_eca.action.Action;
+import org.bson.types.ObjectId;
 
-import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveCondition;
-import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveECA;
-import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveEvent;
+import jp.kobe_u.cs27.primitive_eca.action.Action;
 import jp.kobe_u.cs27.primitive_eca.http_handler.HttpHelper;
+import jp.kobe_u.cs27.primitive_eca.model.ECAModel;
+import jp.kobe_u.cs27.primitive_eca.model.ConditionModel;
+import jp.kobe_u.cs27.primitive_eca.service.Event;
 
 public class Rule implements Observer,RuleInterface {
 
 	private HttpHelper httpHelper; 
-	private PrimitiveEvent context = null;
-	private PrimitiveCondition conditon = null;
-	private PrimitiveECA eca = new PrimitiveECA();
-	private CopyOnWriteArrayList<PrimitiveECA> ecaList;
+	private Event context = null;
+	private ConditionModel conditon = null;
+	private ECAModel eca = new ECAModel();
+	private CopyOnWriteArrayList<ECAModel> ecaList;
 	
 	public Rule() {
 		httpHelper = new HttpHelper();
@@ -36,17 +37,17 @@ public class Rule implements Observer,RuleInterface {
 	 * updateがあった時点でfalse->trueは確定
 	 */
 	@Override
-	public void update(PrimitiveEvent primitiveEvent) {
+	public void update(Event primitiveEvent) {
 		// TODO Auto-generated method stub
 		
 		//updateされた際に、conditionの条件をチェックする
 		boolean flag = false;
-		HashMap<String,Boolean> resultMap = new HashMap<String,Boolean>();
+		Map<ObjectId,Boolean> resultMap = new HashMap<ObjectId,Boolean>();
 		
 		
-		for(PrimitiveECA eca: this.ecaList){
+		for(ECAModel eca: this.ecaList){
 			if(eca.getCondList() != null){
-				for(PrimitiveCondition condition: eca.getCondList()){
+				for(ConditionModel condition: eca.getCondList()){
 					boolean isCondition = httpHelper.parseHttpEndpoint(condition.getUrl());
 					resultMap.put(eca.getEcaId(), isCondition);
 				}
@@ -54,8 +55,12 @@ public class Rule implements Observer,RuleInterface {
 				resultMap.put(eca.getEcaId(), true);
 			}
 		}
-		for(Map.Entry<String, Boolean> e: resultMap.entrySet()){
+		boolean conditonTotalResult = true;
+		for(Map.Entry<ObjectId, Boolean> e: resultMap.entrySet()){/*全部のconditionがtrueの時のみ*/
 			System.out.println(e.getKey()+ ":" + e.getValue());
+			conditonTotalResult = conditonTotalResult&&e.getValue();/*conditonの条件を掛けあわせる*/
+		}
+		if(conditonTotalResult){
 			
 		}
 		
@@ -67,7 +72,7 @@ public class Rule implements Observer,RuleInterface {
 	 * @return
 	 */
 	public Action getActionWithId(String id){
-		for(PrimitiveECA eca: ecaList){
+		for(ECAModel eca: ecaList){
 			if(eca.getEcaId().equals(id)){
 				return eca.getAction();
 			}
@@ -79,9 +84,9 @@ public class Rule implements Observer,RuleInterface {
 		
 	}
 	public boolean startMonitoring(){
-		for(PrimitiveECA eca: this.ecaList){
+		for(ECAModel eca: this.ecaList){
 			
-			PrimitiveEvent event = eca.getEvent();
+			Event event = eca.getEvent();
 			event.setTimer(1000);
 		}
 		return true;
@@ -92,11 +97,11 @@ public class Rule implements Observer,RuleInterface {
 		return null;
 	}
 	
-	public void createRule(PrimitiveEvent event, ArrayList<PrimitiveCondition> cond, Action action){
-		PrimitiveECA eca = new PrimitiveECA(event, cond, action);
+	public void createRule(Event event, ArrayList<ConditionModel> cond, Action action){
+		ECAModel eca = new ECAModel(event, cond, action);
 		this.ecaList.add(eca);
 	}
-	public void addECA(PrimitiveECA eca){
+	public void addECA(ECAModel eca){
 		this.ecaList.add(eca);
 	}
 	
@@ -114,7 +119,7 @@ public class Rule implements Observer,RuleInterface {
 
 
 	@Override
-	public ArrayList<PrimitiveCondition> getConditionList() {
+	public ArrayList<ConditionModel> getConditionList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

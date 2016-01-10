@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import jp.kobe_u.cs27.primitive_eca.action.Action;
-import jp.kobe_u.cs27.primitive_eca.dao.PrimitiveEvent;
+import jp.kobe_u.cs27.primitive_eca.service.Event;
 
 public class RuleTest {
 	private Rule rule;
@@ -16,7 +16,7 @@ public class RuleTest {
 	public void setUp() throws Exception {
 		rule = new Rule();
 		action = new Action();
-		PrimitiveEvent event = new PrimitiveEvent(rule, "http://192.168.100.107:8080/test-execution/webapi/myresource/test");
+		Event event = new Event(rule, "http://192.168.100.107:8080/test-execution/webapi/myresource/test");
 		
 		rule.createRule(event, null, action);
 	}
@@ -32,6 +32,7 @@ public class RuleTest {
 
 	@Test
 	public void testFindActionWithEventId() {
+		Action action = rule.findActionWithEventId("aaa");
 		fail("Not yet implemented");
 	}
 

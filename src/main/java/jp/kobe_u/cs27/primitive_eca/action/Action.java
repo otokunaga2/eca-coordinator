@@ -12,32 +12,26 @@ import java.net.URLEncoder;
  */
 public class Action {
 	private String url;
-	private String actionId;
 	
 
 	public Action(){
 		
 	}
-	public Action(String actionid, String url) {
-		this.actionId = actionid;
+	public Action(String url) {
 		this.url = url;
 	}
-
-	/**
-	 * DBの更新
-	 *
-	 * @return
-	 */
-
 	
+	public void update(){
+		this.invokeUrl(this.url);
+	}
 
 	/**
 	 * URLを叩く
 	 *
 	 * @param urltext
 	 */
-	public void invokeUrl() {
-		String text = this.url;
+	public void invokeUrl(final String urlText) {
+		String text = urlText;
 		String urltext = "";
 		/*
 		 * URLに日本語が含まれる場合の処理 "?"以降(=引数)を切り取って、UTF-8エンコード
@@ -79,13 +73,4 @@ public class Action {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	public String getActionId() {
-		return actionId;
-	}
-
-	public void setActionId(String actionId) {
-		this.actionId = actionId;
-	}
-
 }
